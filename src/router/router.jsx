@@ -3,6 +3,7 @@ import LayOut from "../LayOut/LayOut";
 import Home from "../Home/Home";
 import LoginPage from "../LoginPage/LoginPage";
 import SignPage from "../SignPage/SignPage";
+
 // Create and render a browser router in main.jsx
 
 export const router = createBrowserRouter([
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home />
       },
+      
     ]
   },
 
