@@ -4,16 +4,22 @@ import { CiSearch } from 'react-icons/Ci';
 import { BsListUl } from 'react-icons/Bs';
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import { useCart } from "../hooks/useCart";
 
 
 const Navbar = () => {
-    const { user,LogOutUser } = useContext(AuthContext);
+    const { user, LogOutUser } = useContext(AuthContext);
+    const [cart,refetch] = useCart();
+    // console.log(cart)
 
     const handelLogOut = () => {
         LogOutUser()
-        .then(()=>{})
-        .catch(()=>{})
-     }
+            .then(() => { })
+            .catch(() => { })
+    }
+
+    // console.log(cart)
+
 
     return (
         <div className="navbar bg-base-300 lg:px-10 shadow-xl">
@@ -44,16 +50,16 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <div className="flex gap-[20px] list-none">
-                    <Link>
-                        <button className="btn btn-xs">
-                            <div className="badge"><AiOutlineShoppingCart className="text-[#008ECC]" />+99</div>
+                <div className="flex justify-center items-center gap-[20px] list-none">
+                    <Link to="/myCart">
+                        <button className="btn btn-xs ">
+                            <div className="badge"><AiOutlineShoppingCart className="text-[#008ECC]" />+{cart.length}</div>
                         </button>
                     </Link>
                     {
                         user ?
                             <Link>
-                                <li onClick={handelLogOut} className="flex items-center gap-1"><AiOutlineUser className="text-[#008ECC]" />LogOut</li>
+                                <button onClick={handelLogOut} className="flex items-center gap-1 btn btn-outline btn-info"><AiOutlineUser className="text-[#008ECC]" />LogOut</button>
                             </Link>
                             :
                             <Link to="logIn">

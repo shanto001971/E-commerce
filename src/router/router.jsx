@@ -4,6 +4,7 @@ import Home from "../Home/Home";
 import LoginPage from "../LoginPage/LoginPage";
 import SignPage from "../SignPage/SignPage";
 import Details from "../ProductsDetailsPage/Details";
+import Carts from "../MyCarts/Carts";
 
 // Create and render a browser router in main.jsx
 
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
         path: "/details/:id",
         element: <Details />,
         loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
+      },
+      {
+        path: "/myCart",
+        element: <Carts/>
       }
 
     ]

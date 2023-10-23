@@ -1,12 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/Ai";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
+import { useCart } from "../hooks/useCart";
 
 
 const Details = () => {
     const [product, setProduct] = useState([])
     const data = useLoaderData()
     const { name, category, Weight, price } = data
+    const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const [cart,refetch] = useCart();
 
 
 
@@ -16,6 +22,54 @@ const Details = () => {
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [])
+
+
+    const handaleAddToCart = () => {
+        // console.log(data)
+
+        if (user && user.email) {
+            const CartItem = { itemsId: data?._id, name: data?.name, image: data?.image, price: data?.price };
+            console.log(CartItem)
+
+            fetch('http://localhost:5000/carts', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(CartItem)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        refetch()
+                        Swal.fire({
+                            position: 'top-center',
+                            icon: 'success',
+                            title: 'Food added on the cart',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        
+                    } else {
+                        Swal.fire({
+                            title: 'Please login to order the food',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Login now'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                navigate('/login', { state: { from: location } })
+                            }
+                        })
+                    }
+
+                })
+        }
+
+
+    }
 
     return (
         <div className="lg:flex gap-3 mt-8">
@@ -29,7 +83,7 @@ const Details = () => {
                             <p>{Weight} Liter</p>
                             <p className="font-semibold">Price: {price}</p>
                             <div className="card-actions">
-                                <button className="btn bg-[#3ABFF8] w-full"><AiOutlineShoppingCart/>  Add to Cart</button>
+                                <button onClick={() => handaleAddToCart()} className="btn bg-[#3ABFF8] w-full"><AiOutlineShoppingCart />  Add to Cart</button>
                             </div>
                         </div>
                     </div>
