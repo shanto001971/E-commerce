@@ -21,12 +21,12 @@ const ProductsCards = () => {
     return (
         <div className="lg:mt-5 lg:mb-10">
             <h1 className="text-2xl font-bold ml-5 uppercase">Trending Now</h1>
-            <div className="grid grid-cols-4 gap-2 mt-5">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mt-5">
             {
                 oil.map(soyabinOil=><Card key={soyabinOil._id} soyabinOil={soyabinOil}/>)
             }
             </div>
-            <div className="grid grid-cols-4 gap-2 mt-10">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mt-10">
             {
                 meat.map(beef=><ItemCard key={beef._id} beef={beef}/>)
             }

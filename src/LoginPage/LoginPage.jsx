@@ -31,11 +31,11 @@ const LoginPage = () => {
             <div className="lg:flex justify-around h-[80vh] shadow-2xl rounded-3xl">
                 <div className="w-full flex justify-center items-center bg-[#FE492E] rounded-s-3xl">
                     <div className="text-white">
-                        <h1 className="text-3xl">Welcome Back</h1>
+                        <h1 className="text-3xl">Hello, Friends</h1>
                         <p>
-                            Enter your personal details for
+                            Enter your personal details to use all
                             <br />
-                            journey with us
+                            of site features
                         </p>
                         <Link to="/SignUp"><button className="btn bg-[#FE492E] mt-5 w-28 hover:bg-[#FE492E]  text-white">Sign Up</button></Link>
                     </div>

@@ -37,7 +37,7 @@ const Navbar = () => {
                         </div>
                     </ul>
                 </div>
-                <h1 className="text-[#008ECC] font-bold uppercase text-2xl font-serif">e-<span className="lowercase font-thin">commerce</span></h1>
+                <Link to="/"><h1 className="text-[#008ECC] font-bold uppercase text-2xl font-serif">e-<span className="lowercase font-thin">commerce</span></h1></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -63,7 +63,7 @@ const Navbar = () => {
                             </Link>
                             :
                             <Link to="logIn">
-                                <li className="flex items-center gap-1"><AiOutlineUser className="text-[#008ECC]" />Sing In</li>
+                                <button onClick={handelLogOut} className="flex items-center gap-1 btn btn-outline btn-info"><AiOutlineUser className="text-[#008ECC]" />Sing In</button>
                             </Link>
                     }
                 </div>
