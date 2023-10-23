@@ -3,6 +3,7 @@ import LayOut from "../LayOut/LayOut";
 import Home from "../Home/Home";
 import LoginPage from "../LoginPage/LoginPage";
 import SignPage from "../SignPage/SignPage";
+import Details from "../ProductsDetailsPage/Details";
 
 // Create and render a browser router in main.jsx
 
@@ -15,7 +16,12 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home />
       },
-      
+      {
+        path: "/details/:id",
+        element: <Details />,
+        loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
+      }
+
     ]
   },
 
@@ -26,6 +32,6 @@ export const router = createBrowserRouter([
   {
     path: "/signUp",
     element: <SignPage />
-  }
+  },
 
 ]);
