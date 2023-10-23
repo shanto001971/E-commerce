@@ -8,7 +8,7 @@ const ProductsCards = () => {
     const [product, setProduct] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://e-commerce-server-shanto001971.vercel.app/products')
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [])

@@ -1,9 +1,12 @@
+import { useContext, useEffect, useState } from "react";
 import { useCart } from "../hooks/useCart";
+import { AuthContext } from "../Provider/AuthProvider";
 
 
 const Carts = () => {
+    // const {user}=useContext(AuthContext)
     const [cart, refatch] = useCart()
-    // console.log(cart)
+
 
     return (
         <div>

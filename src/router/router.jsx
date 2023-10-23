@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
       {
         path: "/details/:id",
         element: <Details />,
-        loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
+        loader: ({ params }) => fetch(`https://e-commerce-server-shanto001971.vercel.app/details/${params.id}`)
       },
       {
         path: "/myCart",

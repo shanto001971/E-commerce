@@ -12,13 +12,13 @@ const Details = () => {
     const { name, category, Weight, price } = data
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
-    const [cart,refetch] = useCart();
+    const [cart, refetch] = useCart();
 
 
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://e-commerce-server-shanto001971.vercel.app/products')
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [])
@@ -28,10 +28,10 @@ const Details = () => {
         // console.log(data)
 
         if (user && user.email) {
-            const CartItem = { itemsId: data?._id, name: data?.name, image: data?.image, price: data?.price };
+            const CartItem = { itemsId: data?._id, name: data?.name, image: data?.image, price: data?.price, email: user.email };
             console.log(CartItem)
 
-            fetch('http://localhost:5000/carts', {
+            fetch('https://e-commerce-server-shanto001971.vercel.app/carts', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -49,7 +49,7 @@ const Details = () => {
                             showConfirmButton: false,
                             timer: 1500
                         })
-                        
+
                     } else {
                         Swal.fire({
                             title: 'Please login to order the food',

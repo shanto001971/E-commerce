@@ -10,14 +10,14 @@ export const useCart = () => {
         queryKey: ['cart', user?.email],
         enabled: !loading,
         queryFn: async () => {
-            const response = await fetch(`http://localhost:5000/carts`)
+            const response = await fetch(`https://e-commerce-server-shanto001971.vercel.app/carts?email=${user?.email}`)
             return response.json()
         },
         // queryFn: async () => {
         //     const res = await axiosSecure(`/carts?email=${user?.email}`)
         //     return res.data;
         // },
-    
+
     })
     // console.log(cart)
 
