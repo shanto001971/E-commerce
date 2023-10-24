@@ -20,6 +20,7 @@ export const useCart = () => {
 
     })
     // console.log(cart)
+    refetch()
 
 
     return [cart, refetch]
